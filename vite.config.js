@@ -1,6 +1,9 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
 	// 获取环境变量
@@ -14,7 +17,20 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 		cacheDir: '.vite',
 		clearScreen: false,
 		plugins: [
-			vue()
+			vue(),
+			AutoImport({
+				imports: [
+					'vue',
+					'vue-router',
+				],
+				dts: resolve(resolve(__dirname, 'dts'), 'auto-imports.d.ts'),
+			}),
+			Components({
+				resolvers: [
+					VantResolver()
+				],
+				dts: resolve(resolve(__dirname, 'dts'), 'components.d.ts'),
+			}),
 		],
 		resolve: {
 			alias: {
