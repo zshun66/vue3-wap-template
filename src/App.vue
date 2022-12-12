@@ -11,7 +11,6 @@
 
 <style scoped>
 	.content-container {
-		width: 375px;
 		flex: 1;
 		overflow-y: auto;
 	}

@@ -5,7 +5,9 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
+import postcsspresetenv from 'postcss-preset-env'
 import postcsspxtoviewport from 'postcss-px-to-viewport'
+import compressPlugin from 'vite-plugin-compression'
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
 	// 获取环境变量
@@ -33,7 +35,11 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 				],
 				dts: resolve(resolve(__dirname, 'dts'), 'components.d.ts'),
 			}),
-			VueSetupExtend()
+			VueSetupExtend(),
+			compressPlugin({
+				ext: '.gz', // 压缩文件扩展名
+				deleteOriginFile: false, // // 是否删除原文件
+			}),
 		],
 		resolve: {
 			alias: {
@@ -45,6 +51,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 		css: {
 			postcss: {
 				plugins: [
+					postcsspresetenv(),
 					postcsspxtoviewport({
 						unitToConvert: 'px', // 需要转换的单位
 						viewportWidth: 375, // UI设计稿的宽度
