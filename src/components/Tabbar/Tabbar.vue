@@ -1,4 +1,4 @@
-<script setup>
+<script setup name="Tabbar">
     const active = ref('home')
     const tabbars = [
         {

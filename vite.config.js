@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
+import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
 	// 获取环境变量
@@ -31,6 +32,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 				],
 				dts: resolve(resolve(__dirname, 'dts'), 'components.d.ts'),
 			}),
+			VueSetupExtend()
 		],
 		resolve: {
 			alias: {
