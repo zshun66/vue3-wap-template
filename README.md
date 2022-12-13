@@ -289,6 +289,8 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 
 插件介绍：移动端vw适配方案，将px单位转换为vw单位
 
+缺陷：无法处理多设计图尺寸问题，比如Vant设计图尺寸为375，而自己项目的原型图尺寸为750，替代品cnjm-postcss-px-to-viewport
+
 GitHub：[https://github.com/evrone/postcss-px-to-viewport/blob/master/README_CN.md](https://github.com/evrone/postcss-px-to-viewport/blob/master/README_CN.md)
 
 安装配置：
@@ -330,6 +332,66 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 						landscape: false, // 是否处理横屏设备
 						landscapeUnit: 'vw',
 						landscapeWidth: 568
+					})
+				]
+			}
+		},
+    }
+})
+```
+
+
+
+##### cnjm-postcss-px-to-viewport
+
+插件介绍：基于postcss-px-to-viewport稍加修改而来，解决多设计图尺寸问题
+
+GitHub：[https://github.com/cnjm/postcss-px-to-viewport](https://github.com/cnjm/postcss-px-to-viewport)
+
+安装配置：
+
+1、安装依赖包
+
+```js
+npm install cnjm-postcss-px-to-viewport -D
+```
+
+2、在`vite.config.js`中配置
+
+```js
+import { defineConfig, loadEnv } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import cnjmpostcsspxtoviewport from 'cnjm-postcss-px-to-viewport'
+
+export default defineConfig(({ command, mode, ssrBuild }) => {
+	return {
+		plugins: [
+			vue(),
+		],
+        css: {
+			postcss: {
+				plugins: [
+					cnjmpostcsspxtoviewport({
+						unitToConvert: 'px', // 需要转换的单位
+						viewportWidth: 375, // UI设计稿的宽度
+						unitPrecision: 6, // 转换后的精度，即小数点位数
+						propList: ['*'], // 指定转换的css属性的单位，*代表全部css属性的单位都进行转换
+						viewportUnit: 'vw', // 指定需要转换成的视窗单位，默认vw
+						fontViewportUnit: 'vw', // 指定字体需要转换成的视窗单位，默认vw
+						selectorBlackList: ['ignore-'], // 指定不转换为视窗单位的类名
+						minPixelValue: 1, // 默认值1，小于或等于1px则不进行转换
+						mediaQuery: false, // 否在媒体查询的css代码中也进行转换，默认false
+						replace: false, // 是否转换后直接更换属性值
+						exclude: [/node_modules/], // 设置忽略文件，用正则做目录名匹配
+						include: undefined,
+						landscape: false, // 是否处理横屏设备
+						landscapeUnit: 'vw',
+						landscapeWidth: 568,
+                        // 这个自定义的方法是针对处理vant组件下的设计稿为375问题
+						customFun: ({ file }) => {
+							const designWidth = path.join(file).includes(path.join('node_modules', 'vant')) ? 375 : 750
+							return designWidth
+						}
 					})
 				]
 			}
