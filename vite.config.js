@@ -42,9 +42,15 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 				deleteOriginFile: false, // 是否删除原文件
 			}),
 			visualizer({
-				open: true,
+				filename: `${env.VITE_APP_OUTDIR}/visualizer/stats.html`,
+				title: 'Rollup Visualizer',
+				open: false,
+				template: 'treemap',
 				gzipSize: true,
-				brotliSize: true
+				brotliSize: true,
+				emitFile: false,
+				sourcemap: false,
+				projectRoot: process.cwd()
 			})
 		],
 		resolve: {
