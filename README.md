@@ -5,24 +5,58 @@ vue3.x + vite3.x + vur-router4.x + pinia2.x + postcss + vant4.x 构建的移动�
 
 
 
-#### 软件架构
+#### 软件架构(主要技术栈)
 
-软件架构说明(主要技术栈):
-Vue3.x: 主要js框架
-Vue-Router4.x: 基于Vue3.x版本的路由管理库
-Pinia2.x: 基于Vue3.x版本的状态管理库
-Vant4.x: 基于Vue3.x版本的移动端UI框架
-postcss: 一些辅助插件
-Vite3.x: 构建打包器
+- [x] Vue3.x: 主要js框架✨
+- [x] Vue-Router4.x: 基于Vue3.x版本的路由管理库✨
+- [x] Pinia2.x: 基于Vue3.x版本的状态管理库✨
+- [x] Vant4.x: 基于Vue3.x版本的移动端UI框架✨
+- [x] postcss: 一些辅助插件✨
+- [x] Vite3.x: 构建打包器✨
+
+
+
+#### 模板功能
+
+- [x] Vant组件自动按需导入✨
+- [x] Vue、Vue-Router框架等API自动导入✨
+
+- [x] vw 视口适配✨
+- [x] 多环境变量
+- [ ] SVG 图标自动注册组件
+- [x] setup 语法糖 name属性扩展
+
+- [ ] Axios 封装
+
+- [x] 打包资源 gzip 压缩
+- [x] 自动添加浏览器前缀
+- [x] 项目打包统计分析
+
+- [ ] 首屏加载动画
+
+- [ ] hooks
+- [x]  项目资源路径 alias 别名
 
 
 
 #### 安装教程
 
-##### 1、安装依赖
-
 ```js
+# 克隆项目
+git clone https://gitee.com/zshun66/vue3-wap-template.git
+
+# 进入项目目录
+cd vue3-h5-template
+
+# 安装依赖
+yarn
+# OR
 npm install
+
+# 启动服务
+yarn serve
+# OR
+npm run serve:dev
 ```
 
 
@@ -349,3 +383,4 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 2.  新建 Feat_xxx 分支
 3.  提交代码
 4.  新建 Pull Request
+

@@ -13,5 +13,7 @@
 	.content-container {
 		flex: 1;
 		overflow-y: auto;
+		width: 750px;
+		user-select: none;
 	}
 </style>

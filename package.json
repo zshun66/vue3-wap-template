@@ -1,18 +1,18 @@
 {
 	"name": "vue3-wap-template",
 	"private": true,
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"author": {
 		"name": "张三",
 		"email": "758678856@qq.com"
 	},
 	"type": "module",
 	"scripts": {
-		"serve:dev": "vite --mode serve-dev --host",
+		"serve:test": "vite --mode serve-test --host",
 		"serve:sim": "vite --mode serve-sim --host",
 		"serve:prod": "vite --mode serve-prod --host",
 		"build": "vite build --mode build-dev && vite build --mode build-sim && vite build --mode build-prod",
-		"build:dev": "vite build --mode build-dev",
+		"build:test": "vite build --mode build-test",
 		"build:sim": "vite build --mode build-sim",
 		"build:prod": "vite build --mode build-prod",
 		"preview": "vite preview"
@@ -26,8 +26,8 @@
 	},
 	"devDependencies": {
 		"@vitejs/plugin-vue": "^3.2.0",
+		"cnjm-postcss-px-to-viewport": "^1.0.0",
 		"postcss-preset-env": "^7.8.3",
-		"postcss-px-to-viewport": "^1.1.1",
 		"rollup-plugin-visualizer": "^5.8.3",
 		"terser": "^5.16.1",
 		"unplugin-auto-import": "^0.12.0",

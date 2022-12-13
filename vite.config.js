@@ -1,12 +1,12 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
+import path, { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import postcsspresetenv from 'postcss-preset-env'
-import postcsspxtoviewport from 'postcss-px-to-viewport'
+import cnjmpostcsspxtoviewport from 'cnjm-postcss-px-to-viewport'
 import compressPlugin from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -64,9 +64,9 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 			postcss: {
 				plugins: [
 					postcsspresetenv(),
-					postcsspxtoviewport({
+					cnjmpostcsspxtoviewport({
 						unitToConvert: 'px', // 需要转换的单位
-						viewportWidth: 375, // UI设计稿的宽度
+						viewportWidth: 750, // UI设计稿的宽度
 						unitPrecision: 6, // 转换后的精度，即小数点位数
 						propList: ['*'], // 指定转换的css属性的单位，*代表全部css属性的单位都进行转换
 						viewportUnit: 'vw', // 指定需要转换成的视窗单位，默认vw
@@ -79,7 +79,12 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 						include: undefined,
 						landscape: false, // 是否处理横屏设备
 						landscapeUnit: 'vw',
-						landscapeWidth: 568
+						landscapeWidth: 568,
+						// 这个自定义的方法是针对处理vant组件下的设计稿为375问题
+						customFun: ({ file }) => {
+							const designWidth = path.join(file).includes(path.join('node_modules', 'vant')) ? 375 : 750
+							return designWidth
+						}
 					})
 				]
 			}
