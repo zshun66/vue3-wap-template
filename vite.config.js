@@ -8,6 +8,7 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import postcsspresetenv from 'postcss-preset-env'
 import postcsspxtoviewport from 'postcss-px-to-viewport'
 import compressPlugin from 'vite-plugin-compression'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
 	// 获取环境变量
@@ -38,8 +39,13 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 			VueSetupExtend(),
 			compressPlugin({
 				ext: '.gz', // 压缩文件扩展名
-				deleteOriginFile: false, // // 是否删除原文件
+				deleteOriginFile: false, // 是否删除原文件
 			}),
+			visualizer({
+				open: true,
+				gzipSize: true,
+				brotliSize: true
+			})
 		],
 		resolve: {
 			alias: {
@@ -62,7 +68,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 						selectorBlackList: ['ignore-'], // 指定不转换为视窗单位的类名
 						minPixelValue: 1, // 默认值1，小于或等于1px则不进行转换
 						mediaQuery: false, // 否在媒体查询的css代码中也进行转换，默认false
-						replace: true, // 是否转换后直接更换属性值
+						replace: false, // 是否转换后直接更换属性值
 						exclude: [/node_modules/], // 设置忽略文件，用正则做目录名匹配
 						include: undefined,
 						landscape: false, // 是否处理横屏设备
