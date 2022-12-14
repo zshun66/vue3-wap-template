@@ -9,6 +9,7 @@ import postcsspresetenv from 'postcss-preset-env'
 import cnjmpostcsspxtoviewport from 'cnjm-postcss-px-to-viewport'
 import compressPlugin from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
+import eruda from 'vite-plugin-eruda'
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
 	// 获取环境变量
@@ -51,6 +52,9 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 				emitFile: false,
 				sourcemap: false,
 				projectRoot: process.cwd()
+			}),
+			eruda({
+				debug: env.VITE_APP_ENV !== 'production'
 			})
 		],
 		resolve: {
@@ -66,7 +70,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 					postcsspresetenv(),
 					cnjmpostcsspxtoviewport({
 						unitToConvert: 'px', // 需要转换的单位
-						viewportWidth: 750, // UI设计稿的宽度
+						viewportWidth: 375, // UI设计稿的宽度
 						unitPrecision: 6, // 转换后的精度，即小数点位数
 						propList: ['*'], // 指定转换的css属性的单位，*代表全部css属性的单位都进行转换
 						viewportUnit: 'vw', // 指定需要转换成的视窗单位，默认vw

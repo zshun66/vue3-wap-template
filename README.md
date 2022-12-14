@@ -439,6 +439,41 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 
 
 
+##### vite-plugin-eruda
+
+插件介绍：移动端调试工具，一般用于开发环境中。
+
+GitHub：[https://github.com/wuxiuran/vite-plugin-eruda](https://github.com/wuxiuran/vite-plugin-eruda)
+
+安装配置：
+
+1、安装依赖包
+
+```js
+npm install vite-plugin-eruda -D
+```
+
+2、在`vite.config.js`中配置
+
+```js
+import { defineConfig, loadEnv } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import eruda from 'vite-plugin-eruda'
+
+export default defineConfig(({ command, mode, ssrBuild }) => {
+	return {
+		plugins: [
+			vue(),
+            eruda({
+				debug: env.VITE_APP_ENV !== 'production'
+			})
+		],
+    }
+})
+```
+
+
+
 #### 参与贡献
 
 1.  Fork 本仓库
