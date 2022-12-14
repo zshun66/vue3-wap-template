@@ -557,6 +557,45 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 
 
 
+##### postcss-nested
+
+插件介绍：支持css嵌套规则插件。
+
+GitHub：[https://github.com/postcss/postcss-nested](https://github.com/postcss/postcss-nested)
+
+安装配置：
+
+1、安装依赖包
+
+```js
+cnpm install postcss-nested -D
+```
+
+2、在`vite.config.js`中配置
+
+```js
+import { defineConfig, loadEnv } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import postcssnested from 'postcss-nested'
+
+export default defineConfig(({ command, mode, ssrBuild }) => {
+	return {
+		plugins: [
+			vue(),
+		],
+        css: {
+			postcss: {
+				plugins: [
+                    postcssnested()
+                ]
+            }
+        }
+    }
+})
+```
+
+
+
 #### 参与贡献
 
 1.  Fork 本仓库

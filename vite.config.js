@@ -7,6 +7,7 @@ import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { createStyleImportPlugin, VantResolve } from 'vite-plugin-style-import'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import postcsspresetenv from 'postcss-preset-env'
+import postcssnested from 'postcss-nested'
 import cnjmpostcsspxtoviewport from 'cnjm-postcss-px-to-viewport'
 import compressPlugin from 'vite-plugin-compression'
 import viteImagemin from 'vite-plugin-imagemin'
@@ -109,7 +110,8 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 							const designWidth = path.join(file).includes(path.join('node_modules', 'vant')) ? 375 : 750
 							return designWidth
 						}
-					})
+					}),
+					postcssnested(),
 				]
 			}
 		},
