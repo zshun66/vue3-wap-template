@@ -403,6 +403,45 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 
 
 
+##### postcss-nested
+
+插件介绍：支持css嵌套规则插件。
+
+GitHub：[https://github.com/postcss/postcss-nested](https://github.com/postcss/postcss-nested)
+
+安装配置：
+
+1、安装依赖包
+
+```js
+cnpm install postcss-nested -D
+```
+
+2、在`vite.config.js`中配置
+
+```js
+import { defineConfig, loadEnv } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import postcssnested from 'postcss-nested'
+
+export default defineConfig(({ command, mode, ssrBuild }) => {
+	return {
+		plugins: [
+			vue(),
+		],
+        css: {
+			postcss: {
+				plugins: [
+                    postcssnested()
+                ]
+            }
+        }
+    }
+})
+```
+
+
+
 ##### rollup-plugin-visualizer
 
 插件介绍：打包后的视图文件，会生成一个stats.html统计分析文件
@@ -557,18 +596,18 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 
 
 
-##### postcss-nested
+##### vite-plugin-svg-icons
 
-插件介绍：支持css嵌套规则插件。
+插件介绍：用于生成 svg 雪碧图。
 
-GitHub：[https://github.com/postcss/postcss-nested](https://github.com/postcss/postcss-nested)
+GitHub：[https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md](https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md)
 
 安装配置：
 
 1、安装依赖包
 
 ```js
-cnpm install postcss-nested -D
+cnpm install vite-plugin-svg-icons -D
 ```
 
 2、在`vite.config.js`中配置
@@ -576,20 +615,17 @@ cnpm install postcss-nested -D
 ```js
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import postcssnested from 'postcss-nested'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
 	return {
 		plugins: [
 			vue(),
+            createSvgIconsPlugin({
+				iconDirs: [resolve(__dirname, 'src/assets/icons/svg')],
+				symbolId: 'icon-[dir]-[name]'
+			}),
 		],
-        css: {
-			postcss: {
-				plugins: [
-                    postcssnested()
-                ]
-            }
-        }
     }
 })
 ```

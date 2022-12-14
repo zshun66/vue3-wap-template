@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { createStyleImportPlugin, VantResolve } from 'vite-plugin-style-import'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import postcsspresetenv from 'postcss-preset-env'
 import postcssnested from 'postcss-nested'
@@ -44,6 +45,10 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 				resolves: [
 					VantResolve(),
 				]
+			}),
+			createSvgIconsPlugin({
+				iconDirs: [resolve(__dirname, 'src/assets/icons/svg')],
+				symbolId: 'svg-icon-[dir]-[name]'
 			}),
 			VueSetupExtend(),
 			compressPlugin({
