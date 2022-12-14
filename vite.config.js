@@ -4,6 +4,7 @@ import path, { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
+import { createStyleImportPlugin, VantResolve } from 'vite-plugin-style-import'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import postcsspresetenv from 'postcss-preset-env'
 import cnjmpostcsspxtoviewport from 'cnjm-postcss-px-to-viewport'
@@ -38,12 +39,18 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 				],
 				dts: resolve(resolve(__dirname, 'dts'), 'components.d.ts'),
 			}),
+			createStyleImportPlugin({
+				resolves: [
+					VantResolve(),
+				]
+			}),
 			VueSetupExtend(),
 			compressPlugin({
 				ext: '.gz', // 压缩文件扩展名
 				deleteOriginFile: false, // 是否删除原文件
 			}),
 			viteImagemin({
+				disable: false,
 				optipng: {
 					optimizationLevel: 8,
 				},

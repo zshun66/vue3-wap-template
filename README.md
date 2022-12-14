@@ -519,6 +519,44 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 
 
 
+##### vite-plugin-style-import
+
+插件介绍：一个组件样式按需导入插件。
+
+GitHub：[https://github.com/vbenjs/vite-plugin-style-import/blob/main/README.zh_CN.md](https://github.com/vbenjs/vite-plugin-style-import/blob/main/README.zh_CN.md)
+
+安装配置：
+
+1、安装依赖包
+
+```js
+cnpm install vite-plugin-style-import -D
+cnpm install consola -D
+```
+
+2、在`vite.config.js`中配置
+
+```js
+import { defineConfig, loadEnv } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import { createStyleImportPlugin, VantResolve } from 'vite-plugin-style-import'
+
+export default defineConfig(({ command, mode, ssrBuild }) => {
+	return {
+		plugins: [
+			vue(),
+            createStyleImportPlugin({
+				resolves: [
+					VantResolve(),
+				]
+			}),
+		],
+    }
+})
+```
+
+
+
 #### 参与贡献
 
 1.  Fork 本仓库
