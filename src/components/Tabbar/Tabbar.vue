@@ -1,29 +1,21 @@
 <script setup name="Tabbar">
-    const active = ref('home')
+    const active = ref('index')
     const tabbars = [
         {
             title: '首页',
-            name: 'home',
+            name: 'index',
             to: {
-                path: '/home',
+                path: '/index',
             },
             icon: 'home-o'
         },
         {
-            title: '搜索',
-            name: 'search',
+            title: '百宝箱',
+            name: 'box',
             to: {
-                path: '/search'
+                path: '/box'
             },
-            icon: 'search'
-        },
-        {
-            title: '设置',
-            name: 'setting',
-            to: {
-                path: '/setting',
-            },
-            icon: 'setting-o'
+            icon: 'gift-o'
         },
         {
             title: '我的',
@@ -38,7 +30,7 @@
 
 <template>
     <van-tabbar
-        class="tabbar-comonent-container"
+        class="tabbar-component-container"
         v-model="active"
         fixed
         border
