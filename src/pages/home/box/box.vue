@@ -1,5 +1,5 @@
 <script setup name="box">
-	
+	console.log('百宝箱')
 </script>
 
 <template>

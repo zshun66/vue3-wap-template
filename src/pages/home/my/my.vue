@@ -1,5 +1,5 @@
 <script setup name="my">
-	
+	console.log('我的')
 </script>
 
 <template>

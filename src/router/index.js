@@ -15,7 +15,7 @@ const router = createRouter({
 					component: () => import('@/pages/home/index/index.vue'),
 					meta: {
 						title: '首页',
-						keepAlive: true,
+						keepAlive: false,
 						auth: false,
 						index: 1,
 					}

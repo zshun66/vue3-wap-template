@@ -5,18 +5,18 @@
 <template>
 	<div class="home-page-container">
 		<router-view v-slot="{ Component, route }">
-			<template v-if="Component && route.meta.keepAlive">
-				<transition mode="out-in">
-					<keep-alive>
-						<component :is="Component"></component>
-					</keep-alive>
-				</transition>
-			</template>
-			<template v-if="Component && !route.meta.keepAlive">
-				<transition mode="out-in">
-					<component :is="Component"></component>
-				</transition>
-			</template>
+			<keep-alive>
+				<component
+					:is="Component"
+					:key="route.name" 
+					v-if="route.meta.keepAlive"
+				></component>
+			</keep-alive>
+			<component
+				:is="Component"
+				:key="route.name" 
+				v-if="!route.meta.keepAlive"
+			></component>
 		</router-view>
 		
 		<Tabbar />
