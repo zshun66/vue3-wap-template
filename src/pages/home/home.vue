@@ -4,7 +4,21 @@
 
 <template>
 	<div class="home-page-container">
-		<router-view></router-view>
+		<router-view v-slot="{ Component, route }">
+			<template v-if="Component && route.meta.keepAlive">
+				<transition mode="out-in">
+					<keep-alive>
+						<component :is="Component"></component>
+					</keep-alive>
+				</transition>
+			</template>
+			<template v-if="Component && !route.meta.keepAlive">
+				<transition mode="out-in">
+					<component :is="Component"></component>
+				</transition>
+			</template>
+		</router-view>
+		
 		<Tabbar />
 	</div>
 </template>

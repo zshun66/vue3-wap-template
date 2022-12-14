@@ -1,5 +1,20 @@
 <script setup name="index">
+	const pFunc = function() {
+		return new Promise(resolve => {
+			setTimeout(() => {
+				resolve(89899)
+			}, 3000)
+		})
+	}
+	// let res = await pFunc()
+	// console.log(res)
 	
+	
+	const execFunc = async function() {
+		let res = await pFunc()
+		console.log(res)
+	}
+	execFunc()
 </script>
 
 <template>
