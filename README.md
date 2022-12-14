@@ -31,6 +31,7 @@ vue3.x + vite3.x + vur-router4.x + pinia2.x + postcss + vant4.x 构建的移动�
 - [x] 打包资源 gzip 压缩
 - [x] 自动添加浏览器前缀
 - [x] 项目打包统计分析
+- [x] 移动端开发调试工具
 
 - [ ] 首屏加载动画
 
@@ -91,7 +92,7 @@ npm run build:prod
 
 
 
-#### 插件说明
+#### 插件集成
 
 ##### unplugin-vue-components
 
@@ -467,6 +468,50 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
             eruda({
 				debug: env.VITE_APP_ENV !== 'production'
 			})
+		],
+    }
+})
+```
+
+
+
+##### vite-plugin-imagemin
+
+插件介绍：一个压缩图片资源的 vite 插件。
+
+GitHub：[https://github.com/vbenjs/vite-plugin-imagemin](https://github.com/vbenjs/vite-plugin-imagemin)
+
+安装配置：
+
+1、安装依赖包
+
+```js
+cnpm install vite-plugin-imagemin -D
+```
+
+2、在`vite.config.js`中配置
+
+```js
+import { defineConfig, loadEnv } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import viteImagemin from 'vite-plugin-imagemin'
+
+export default defineConfig(({ command, mode, ssrBuild }) => {
+	return {
+		plugins: [
+			vue(),
+            viteImagemin({
+				optipng: {
+					optimizationLevel: 8,
+				},
+				pngquant: {
+					quality: [0.8, 0.9],
+					speed: 4,
+				},
+				mozjpeg: {
+					quality: 80,
+				},
+			}),
 		],
     }
 })

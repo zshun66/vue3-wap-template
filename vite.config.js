@@ -8,6 +8,7 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import postcsspresetenv from 'postcss-preset-env'
 import cnjmpostcsspxtoviewport from 'cnjm-postcss-px-to-viewport'
 import compressPlugin from 'vite-plugin-compression'
+import viteImagemin from 'vite-plugin-imagemin'
 import { visualizer } from 'rollup-plugin-visualizer'
 import eruda from 'vite-plugin-eruda'
 
@@ -41,6 +42,18 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 			compressPlugin({
 				ext: '.gz', // 压缩文件扩展名
 				deleteOriginFile: false, // 是否删除原文件
+			}),
+			viteImagemin({
+				optipng: {
+					optimizationLevel: 8,
+				},
+				pngquant: {
+					quality: [0.8, 0.9],
+					speed: 4,
+				},
+				mozjpeg: {
+					quality: 80,
+				},
 			}),
 			visualizer({
 				filename: `${env.VITE_APP_OUTDIR}/visualizer/stats.html`,
