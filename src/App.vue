@@ -4,7 +4,7 @@
 
 <template>
 	<div class="content-container">
-		<svg-icon name="home_light" size="50px" color="red" />
+		<svg-icon name="home_light" />
 		<div v-for="index in 100" :key="index">{{ index }}</div>
 	</div>
 	<Tabbar />

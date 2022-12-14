@@ -18,12 +18,12 @@
         // 图标大小
         size: {
             type: String,
-            default: '1em'
+            default: ''
         },
 		// 图标颜色
 		color: {
 		    type: String,
-		    default: 'currentColor'
+		    default: ''
 		}
     })
 

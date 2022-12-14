@@ -1,7 +1,7 @@
 # vue3-wap-template
 
 #### 介绍
-vue3.x + vite3.x + vur-router4.x + pinia2.x + postcss + vant4.x 构建的移动端项目模板
+vue3.x + vite3.x + vur-router4.x + pinia2.x + postcss + vant4.x 构建的移动端H5项目模板
 
 
 
@@ -22,20 +22,21 @@ vue3.x + vite3.x + vur-router4.x + pinia2.x + postcss + vant4.x 构建的移动�
 - [x] Vue、Vue-Router框架等API自动导入✨
 
 - [x] vw 视口适配✨
+- [x] SVG 图标自动注册组件✨
 - [x] 多环境变量
-- [ ] SVG 图标自动注册组件
 - [x] setup 语法糖 name属性扩展
+- [x] css嵌套写法(非less、scss)
 
 - [ ] Axios 封装
+- [ ] 首屏加载动画
+- [ ] hooks
 
 - [x] 打包资源 gzip 压缩
+- [x] 图片资源压缩
 - [x] 自动添加浏览器前缀
 - [x] 项目打包统计分析
 - [x] 移动端开发调试工具
 
-- [ ] 首屏加载动画
-
-- [ ] hooks
 - [x]  项目资源路径 alias 别名
 
 
@@ -47,16 +48,12 @@ vue3.x + vite3.x + vur-router4.x + pinia2.x + postcss + vant4.x 构建的移动�
 git clone https://gitee.com/zshun66/vue3-wap-template.git
 
 # 进入项目目录
-cd vue3-h5-template
+cd vue3-wap-template
 
 # 安装依赖
-yarn
-# OR
 npm install
 
 # 启动服务
-yarn serve
-# OR
 npm run serve:dev
 ```
 
