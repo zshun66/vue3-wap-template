@@ -8,7 +8,7 @@
 			<keep-alive>
 				<component
 					:is="Component"
-					:key="route.name" 
+					:key="route.name"
 					v-if="route.meta.keepAlive"
 				></component>
 			</keep-alive>
@@ -27,5 +27,6 @@
 	.home-page-container {
 		width: 100%;
 		min-height: 100%;
+		background: #eee;
 	}
 </style>
