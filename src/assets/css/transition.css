@@ -1,39 +1,39 @@
-/* 路由前进动画 */
-.fold-left-enter-from {
+/* 新窗体从右侧进入, 且老窗体被挤压而出 */
+.pop-in-right-enter-from {
 	transform: translate3d(100%, 0, 0);
 }
-.fold-left-enter-to {
+.pop-in-right-enter-to {
 	transform: translate3d(0, 0, 0);
 }
-.fold-left-enter-active {
-	transition: all 30s ease;
-}
-.fold-left-leave-from {
-	transform: translate3d(0, 0, 0);
-}
-.fold-left-leave-to {
-	transform: translate3d(-100%, 0, 0);
-}
-.fold-left-leave-active {
-	transition: all 30s ease;
-}
-
-/* 路由后退动画 */
-.fold-right-enter-from {
-	transform: translate3d(-100%, 0, 0);
-}
-.fold-right-enter-to {
-	transform: translate3d(0, 0, 0);
-}
-.fold-right-enter-active {
+.pop-in-right-enter-active {
 	transition: all 0.3s ease;
 }
-.fold-right-leave-from {
+.pop-in-right-leave-from {
 	transform: translate3d(0, 0, 0);
 }
-.fold-right-leave-to {
+.pop-in-right-leave-to {
+	transform: translate3d(-100%, 0, 0);
+}
+.pop-in-right-leave-active {
+	transition: all 0.3s ease;
+}
+
+/* 新窗体从左侧进入, 且老窗体被挤压而出 */
+.pop-out-right-enter-from {
+	transform: translate3d(-100%, 0, 0);
+}
+.pop-out-right-enter-to {
+	transform: translate3d(0, 0, 0);
+}
+.pop-out-right-enter-active {
+	transition: all 0.3s ease;
+}
+.pop-out-right-leave-from {
+	transform: translate3d(0, 0, 0);
+}
+.pop-out-right-leave-to {
 	transform: translate3d(100%, 0, 0);
 }
-.fold-right-leave-active {
+.pop-out-right-leave-active {
 	transition: all 0.3s ease;
 }
