@@ -1,41 +1,45 @@
+import { ref } from 'vue'
+
 export default [
 	{
 		path: '/',
+		name: '/',
+		redirect: '/home',
+	},
+	{
+		path: '/home',
 		name: 'home',
-		redirect: '/index',
+		redirect: '/home/index',
 		component: () => import('@/pages/home/home.vue'),
 		children: [
 			{
-				path: '/index',
-				name: 'index',
+				path: '/home/index',
+				name: 'home:index',
 				component: () => import('@/pages/home/index/index.vue'),
 				meta: {
 					title: '首页',
 					keepAlive: true,
 					auth: false,
-					index: 1,
 				}
 			},
 			{
-				path: '/box',
-				name: 'box',
+				path: '/home/box',
+				name: 'home:box',
 				component: () => import('@/pages/home/box/box.vue'),
 				meta: {
 					title: '百宝箱',
 					keepAlive: true,
 					auth: false,
-					index: 2,
 				}
 			},
 			{
-				path: '/my',
-				name: 'my',
+				path: '/home/my',
+				name: 'home:my',
 				component: () => import('@/pages/home/my/my.vue'),
 				meta: {
 					title: '我的',
 					keepAlive: true,
 					auth: false,
-					index: 3,
 				}
 			}
 		],
@@ -48,7 +52,6 @@ export default [
 			title: '宝宝列表',
 			keepAlive: true,
 			auth: true,
-			index: 10,
 		}
 	},
 	{
@@ -59,7 +62,6 @@ export default [
 			title: '宝宝详情',
 			keepAlive: true,
 			auth: true,
-			index: 11,
 		}
 	},
 	{
@@ -68,9 +70,28 @@ export default [
 		component: () => import('@/pages/baby/baby-add/baby-add.vue'),
 		meta: {
 			title: '添加宝宝',
-			keepAlive: true,
+			keepAlive: false,
 			auth: true,
-			index: 12,
+		}
+	},
+	{
+		path: '/baby/add',
+		name: 'baby-add',
+		component: () => import('@/pages/baby/baby-add/baby-add.vue'),
+		meta: {
+			title: '添加宝宝',
+			keepAlive: false,
+			auth: true,
+		}
+	},
+	{
+		path: '/baby/modify',
+		name: 'baby-modify',
+		component: () => import('@/pages/baby/baby-modify/baby-modify.vue'),
+		meta: {
+			title: '修改宝宝',
+			keepAlive: false,
+			auth: true,
 		}
 	},
 	{
@@ -79,9 +100,8 @@ export default [
 		component: () => import('@/pages/about/about.vue'),
 		meta: {
 			title: '关于我们',
-			keepAlive: true,
+			keepAlive: false,
 			auth: true,
-			index: 20,
 		}
 	}
 ]

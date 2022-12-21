@@ -1,5 +1,5 @@
 <script setup name="baby-detail">
-	
+	console.log('宝宝详情')
 </script>
 
 <template>

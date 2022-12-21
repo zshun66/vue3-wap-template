@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from './routes.js'
 
@@ -8,6 +9,8 @@ const router = createRouter({
 
 // 全局路由前置守卫
 router.beforeEach(async (to, from) => {
+	// console.log('from', from)
+	// console.log('to', to)
 	return true
 })
 

@@ -1,4 +1,5 @@
 <script setup name="about">
+	console.log('关于')
 </script>
 
 <template>

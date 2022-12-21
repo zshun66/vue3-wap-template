@@ -1,27 +1,27 @@
 <script setup name="Tabbar">
-    const active = ref('index')
+    const active = ref('home:index')
     const tabbars = [
         {
             title: '首页',
-            name: 'index',
+            name: 'home:index',
             to: {
-                path: '/index',
+                path: '/home/index',
             },
             icon: 'home-o'
         },
         {
             title: '百宝箱',
-            name: 'box',
+            name: 'home:box',
             to: {
-                path: '/box'
+                path: '/home/box'
             },
             icon: 'gift-o'
         },
         {
             title: '我的',
-            name: 'my',
+            name: 'home:my',
             to: {
-                path: '/my'
+                path: '/home/my'
             },
             icon: 'friends-o'
         }

@@ -1,38 +1,55 @@
 <script setup name="App">
 	const route = useRoute()
 	const router = useRouter()
-	// console.log(route, router)
-	
-	const tranName = ref('')
 
-	watch(() => router.currentRoute.value, (to, from) => {
-		console.log(to, from)
-		const names = ['index', 'box', 'my']
-		if (from.path == '/' || (names.includes(to.name) && names.includes(from.name))) {
-			tranName.value = ''
+	let position = 0
+	const isHomePage = computed(() => route.name?.includes('home'))
+	const homeTransName = ref('')
+	const transName = ref('')
+
+	watch(() => route.path, (newPath, oldPath) => {
+		if (route.name.includes('home') && oldPath !== '/') {
+			homeTransName.value = 'home-in'
 		} else {
-			tranName.value = 'pop-in-right'
+			homeTransName.value = 'home-out'
 		}
-	}, { immediate: false })
+		if (router.options.history.state.position >= position) {
+			transName.value = 'page-in'
+		} else {
+			transName.value = 'page-out'
+		}
+		position = router.options.history.state.position
+	})
 </script>
 
 <template>
 	<Suspense>
+		<!-- 路由缓存之完美方案 -->
 		<router-view v-slot="{ Component, route }">
-			<transition :name="tranName">
+			<transition :name="homeTransName">
+				<keep-alive>
+					<component
+						:is="Component"
+						v-if="isHomePage"
+					></component>
+				</keep-alive>
+			</transition>
+
+			<transition :name="transName">
 				<keep-alive>
 					<component
 						:is="Component"
 						:key="route.name"
-						v-if="route.meta.keepAlive"
+						v-if="!isHomePage && route.meta.keepAlive"
 					></component>
 				</keep-alive>
 			</transition>
-			<transition>
+
+			<transition :name="transName">
 				<component
 					:is="Component"
 					:key="route.name"
-					v-if="!route.meta.keepAlive"
+					v-if="!isHomePage && !route.meta.keepAlive"
 				></component>
 			</transition>
 		</router-view>

@@ -4,7 +4,17 @@
 
 <template>
 	<div class="box-page-container">
-		百宝箱
+		<p>百宝箱</p>
+		<p>百宝箱</p>
+		<p>百宝箱</p>
+		<p>百宝箱</p>
+		<p>百宝箱</p>
+		<p>百宝箱</p>
+		<p>百宝箱</p>
+		<p>百宝箱</p>
+		<p>百宝箱</p>
+		<p>百宝箱</p>
+		<p>百宝箱</p>
 		<router-link to="/baby/list">宝宝列表</router-link>
 		<router-link to="/baby/detail/145465146556">宝宝详情</router-link>
 		<router-link to="/baby/add">添加宝宝</router-link>
@@ -12,7 +22,7 @@
 	</div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 	.box-page-container {
 		a {
 			margin: 0 20px;

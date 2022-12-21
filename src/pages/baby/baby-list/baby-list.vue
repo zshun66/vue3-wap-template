@@ -1,10 +1,11 @@
 <script setup name="baby-list">
-	
+	console.log('宝宝列表')
 </script>
 
 <template>
 	<div class="baby-list-page-container">
-		宝宝列表
+		<p>宝宝列表</p>
+		<router-link to="/baby/modify">宝宝修改</router-link>
 	</div>
 </template>
 

@@ -1,5 +1,5 @@
 <script setup name="baby-add">
-	
+	console.log('添加宝宝')
 </script>
 
 <template>
