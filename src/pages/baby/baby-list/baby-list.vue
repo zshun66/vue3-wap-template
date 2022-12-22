@@ -4,7 +4,7 @@
 
 <template>
 	<div class="baby-list-page-container">
-		<p>宝宝列表</p>
+		<p v-for="index in 100" :key="index">宝宝列表</p>
 		<router-link to="/baby/modify">宝宝修改</router-link>
 	</div>
 </template>

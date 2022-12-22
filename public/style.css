@@ -20,6 +20,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
 }
+body {
+    height: calc(100% - env(safe-area-inset-bottom));
+    position: relative;
+}
 
 a {
 	text-decoration: none;
@@ -32,8 +36,7 @@ ul {
 
 #app {
     width: 100%;
-    height: calc(100% - env(safe-area-inset-bottom));
+    height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-    position: relative;
 }
