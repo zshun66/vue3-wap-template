@@ -30,12 +30,11 @@
 
 <template>
     <van-tabbar
-        class="tabbar-component-container"
         v-model="active"
         fixed
         border
         :z-index="1"
-        :placeholder="true"
+        :placeholder="false"
         active-color="#1989fa"
         inactive-color="#7d7e80"
         :route="true"
@@ -52,5 +51,5 @@
 </template>
 
 <style scoped>
-
+    
 </style>

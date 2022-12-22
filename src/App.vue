@@ -24,7 +24,6 @@
 
 <template>
 	<Suspense>
-		<!-- 路由缓存之完美方案 -->
 		<router-view v-slot="{ Component, route }">
 			<transition :name="homeTransName">
 				<keep-alive>

@@ -13,34 +13,47 @@
 
 <template>
 	<div class="home-page-container">
-		<router-view v-slot="{ Component, route }">
-			<transition :name="transName">
-				<keep-alive>
+		<div class="home-subpage-container">
+			<router-view v-slot="{ Component, route }">
+				<transition :name="transName">
+					<keep-alive>
+						<component
+							:is="Component"
+							:key="route.name"
+							v-if="route.meta.keepAlive"
+						></component>
+					</keep-alive>
+				</transition>
+				<transition :name="transName">
 					<component
 						:is="Component"
 						:key="route.name"
-						v-if="route.meta.keepAlive"
+						v-if="!route.meta.keepAlive"
 					></component>
-				</keep-alive>
-			</transition>
-			<transition :name="transName">
-				<component
-					:is="Component"
-					:key="route.name"
-					v-if="!route.meta.keepAlive"
-				></component>
-			</transition>
-		</router-view>
-		
-		<Tabbar />
+				</transition>
+			</router-view>
+		</div>
+        
+		<Tabbar class="tabbar-component-container" />
 	</div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 	.home-page-container {
 		width: 100%;
-		min-height: 100%;
+		height: 100%;
+		overflow-x: hidden;
+		overflow-y: hidden;
 		background: #eee;
+		.home-subpage-container {
+			height: calc(100% - 100px);
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
+		.tabbar-component-container {
+			height: 100px;
+			position: relative;
+		}
 	}
 
 	.die-leave-active {
