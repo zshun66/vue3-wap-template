@@ -1,0 +1,1 @@
+import{_ as a,f as s,q as e,v as t}from"./index-f391acc3.js";const o={class:"about-page-container"},p=s({name:"about"}),c=a(Object.assign(p,{setup:a=>(a,s)=>(e(),t("div",o," 关于 "))}),[["__scopeId","data-v-b5177f87"],["__file","C:/Users/Administrator/Desktop/vue3-wap-template/src/pages/about/about.vue"]]);export{c as default};

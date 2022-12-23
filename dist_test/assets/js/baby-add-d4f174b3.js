@@ -1,1 +1,0 @@
-import{_ as a,f as s,q as e,v as d}from"./index-56763b26.js";const b={class:"baby-add-page-container"},t=s({name:"baby-add"}),p=a(Object.assign(t,{setup:a=>(a,s)=>(e(),d("div",b," 添加宝宝 "))}),[["__scopeId","data-v-fcb8d7a1"],["__file","C:/Users/Administrator/Desktop/vue3-wap-template/src/pages/baby/baby-add/baby-add.vue"]]);export{p as default};
