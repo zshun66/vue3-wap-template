@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+	vertical-align: baseline;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    color-scheme: light dark;
+    
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+body {
+    height: calc(100% - env(safe-area-inset-bottom));
+    position: relative;
+}
+
+a {
+	text-decoration: none;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
