@@ -1,1 +1,0 @@
-import{_ as e,f as s,q as a,v as t}from"./index-f391acc3.js";const m={class:"my-page-container"},o=s({name:"my"}),p=e(Object.assign(o,{setup:e=>(e,s)=>(a(),t("div",m," 我的 "))}),[["__scopeId","data-v-3f2789ed"],["__file","C:/Users/Administrator/Desktop/vue3-wap-template/src/pages/home/my/my.vue"]]);export{p as default};

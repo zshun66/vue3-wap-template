@@ -1,1 +1,0 @@
-import{_ as a,f as s,q as e,v as t}from"./index-f391acc3.js";const i={class:"baby-modify-page-container"},o=s({name:"baby-modify"}),b=a(Object.assign(o,{setup:a=>(a,s)=>(e(),t("div",i," 宝宝修改 "))}),[["__scopeId","data-v-4c135023"],["__file","C:/Users/Administrator/Desktop/vue3-wap-template/src/pages/baby/baby-modify/baby-modify.vue"]]);export{b as default};
