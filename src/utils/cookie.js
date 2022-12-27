@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 
 export const setCookie = (key, value) => {
 	if (!key) return
-	if (typeof value == 'object') {
+	if (typeof value === 'object') {
 		value = JSON.stringify(value)
 	}
 	return Cookies.set(key, value)

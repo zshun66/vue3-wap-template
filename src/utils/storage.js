@@ -3,7 +3,7 @@
  */
 export const setStorage = (key, value) => {
 	if (!key) return
-	if (typeof value == 'object') {
+	if (typeof value === 'object') {
 		value = JSON.stringify(value)
 	}
 	localStorage.setItem(key, value)
