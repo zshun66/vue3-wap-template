@@ -32,6 +32,9 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 				imports: [
 					'vue',
 					'vue-router',
+					{
+						// '@/utils/pubsub': ['usePubsub'],
+					}
 				],
 				dts: resolve(resolve(__dirname, 'dts'), 'auto-imports.d.ts'),
 			}),

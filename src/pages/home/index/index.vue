@@ -1,5 +1,9 @@
 <script setup name="index">
+	import pubsub from '@/utils/pubsub.js'
 	console.log('首页')
+	pubsub.subscribe('info', function(msg, data) {
+		console.log('订阅', msg, data)
+	})
 </script>
 
 <template>

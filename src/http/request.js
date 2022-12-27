@@ -9,9 +9,9 @@ const axiosInstance = axios.create({
     headers: {
     },
 })
-axiosInstance.defaults.transformResponse.unshift(function(data) {
-	return data
-})
+// axiosInstance.defaults.transformResponse.unshift(function(data) {
+// 	return data
+// })
 
 // 请求拦截器
 axiosInstance.interceptors.request.use(function(config) {

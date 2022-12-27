@@ -11,9 +11,9 @@ export const setCookie = (key, value) => {
 export const getCookie = (key) => {
 	if (!key) return
 	try {
-	    return JSON.parse(Cookies.get(key))
+		return JSON.parse(Cookies.get(key))
 	} catch (e) {
-	    return Cookies.get(key)
+		return Cookies.get(key)
 	}
 }
 
