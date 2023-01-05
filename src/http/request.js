@@ -1,5 +1,9 @@
 import axios from 'axios'
-import { getCookie } from '@/utils/cookie.js'
+import {
+	getCookieStorage,
+	setSessionStorage
+	getSessionStorage,
+} from '@/utils/storage.js'
 
 // 创建axios实例
 const axiosInstance = axios.create({
@@ -16,9 +20,32 @@ const axiosInstance = axios.create({
 // 请求拦截器
 axiosInstance.interceptors.request.use(function(config) {
 	const isAuth = config.options.auth
-	const token = getCookie('user_token')
+	const token = getCookieStorage('user_token')
 	if (isAuth && token) {
 		config.headers['Authorization'] = 'Bearer ' + token
+	}
+
+	// post 和 put 请求拦截重复请求
+	if (config.method == 'post' || config.method == 'put') {
+		const requestObj = {
+			url: config.url,
+			data: config.data,
+			time: new Date().getTime()
+		}
+		const sessionObj = getSessionStorage('sessionObj')
+		if (!sessionObj) {
+			setSessionStorage('sessionObj', requestObj)
+		} else {
+			const r_url = sessionObj.url
+			const r_data = sessionObj.data
+			const r_time = sessionObj.time
+			const interval = 1000
+			if (r_data === requestObj.data && requestObj.time - r_time < interval && r_url === requestObj.url) {
+				return Promise.reject(new Error('数据正在处理，请勿重复提交'))
+			} else {
+				setSessionStorage('sessionObj', requestObj)
+			}
+		}
 	}
     return config
 }, function (error) {
@@ -37,7 +64,7 @@ axiosInstance.interceptors.response.use(function(response) {
         Dialog.confirm({
 			title: '登录失效, 请重新登录',
 		}).then(() => {
-			
+
 		})
     } else {
         console.log('异常请求', response)
