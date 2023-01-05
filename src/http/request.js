@@ -15,8 +15,8 @@ const axiosInstance = axios.create({
 
 // 请求拦截器
 axiosInstance.interceptors.request.use(function(config) {
-	const token = getCookie('user_token')
 	const isAuth = config.options.auth
+	const token = getCookie('user_token')
 	if (isAuth && token) {
 		config.headers['Authorization'] = 'Bearer ' + token
 	}
@@ -53,7 +53,7 @@ axiosInstance.interceptors.response.use(function(response) {
 	} else if (message.includes('timeout')) {
 		message = '请求超时'
 	} else if (message.includes('Request failed with status code')) {
-		message = '系统接口' + message.substr(message.length - 3) + '异常'
+		message = '服务异常'
 	}
 	Toast.fail(message)
     return Promise.reject(error)

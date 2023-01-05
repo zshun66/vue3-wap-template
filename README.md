@@ -26,16 +26,17 @@ vue3.x + vite3.x + vur-router4.x + pinia2.x + postcss + vant4.x 构建的移动�
 - [x] 路由缓存方案
 - [x] 多环境变量
 - [x] setup 语法糖 name属性扩展
-- [x] css嵌套写法(非less、scss)
-- [ ] Axios 封装
-- [ ] 首屏加载动画
-- [ ] hooks
+- [x] postcss嵌套语法
+- [x] Axios 封装
+- [x] 首屏加载动画
 - [x] 打包资源 gzip 压缩
 - [x] 图片资源压缩
 - [x] 自动添加浏览器前缀
 - [x] 项目打包统计分析
 - [x] 移动端开发调试工具
 - [x] 项目资源路径 alias 别名
+- [ ] 国际化
+- [ ] 主题切换
 
 
 
