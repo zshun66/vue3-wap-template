@@ -17,9 +17,14 @@ export default function compressImage(file, compressedOption, callback) {
 	    img.src = path
 	    img.onload = () => {
 	        // 设置压缩后图片宽度
-	        let width = compressedOption.width || img.width * compressedOption.scale || img.width
+	        let width = compressedOption.width ||
+						img.width * compressedOption.scale ||
+						img.width
 	        // 设置压缩后图片高度
-	        let height = compressedOption.height || img.height * compressedOption.scale || (compressedOption.width ? compressedOption.width * img.height / img.width : '') || img.height
+	        let height = compressedOption.height ||
+						img.height * compressedOption.scale ||
+						(compressedOption.width ? compressedOption.width * img.height / img.width : '') ||
+						img.height
 	        // console.log(width, height)
 	        // 生成canvas
 	        let canvas = document.createElement('canvas')

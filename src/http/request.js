@@ -4,6 +4,7 @@ import {
 	setSessionStorage
 	getSessionStorage,
 } from '@/utils/storage.js'
+import { saveAs } from 'file-saver'
 
 // 创建axios实例
 const axiosInstance = axios.create({
@@ -106,4 +107,24 @@ export default function request({
         data: data,
         options
     })
+}
+
+// 通用下载方法
+export function download(url, params, filename) {
+	return axiosInstance.post(url, params, {
+		transformRequest: [
+			(params) => {
+				return tansParams(params)
+			}
+		],
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		responseType: 'blob'
+	}).then((data) => {
+		const blob = new Blob([data])
+		saveAs(blob, filename)
+	}).catch(err => {
+		
+	})
 }
