@@ -1,10 +1,21 @@
 <script setup name="about">
-	console.log('关于')
+	import { useI18n } from 'vue-i18n'
+	const { locale } = useI18n()
+	const handleChangeLang = function() {
+		if (locale.value == 'en-US') {
+			locale.value = 'zh-CN'
+		} else if (locale.value == 'zh-CN') {
+			locale.value = 'en-US'
+		}
+	}
 </script>
 
 <template>
 	<div class="about-page-container">
-		关于
+		<p>关于</p>
+		<span>{{ $t('title') }}:</span>
+		<span>{{ $t('info.name') }}</span>
+		<button @click="handleChangeLang">切换语言</button>
 	</div>
 </template>
 
