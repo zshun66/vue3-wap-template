@@ -1,0 +1,116 @@
+/* html结构 */
+/*
+	<div id="loading-square-dot-mask">
+		<div class="loading-square-dot-wrapper">
+			<span class="loading-square-dot-spin">
+				<i class="loading-dot"></i>
+				<i class="loading-dot"></i>
+				<i class="loading-dot"></i>
+				<i class="loading-dot"></i>
+			</span>
+			<div class="text-tip">资源加载中...</div>
+		</div>
+	</div>
+*/
+
+#loading-square-dot-mask {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: #fff;
+	user-select: none;
+	z-index: 9999;
+	overflow: hidden
+}
+
+.loading-square-dot-wrapper {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -100%);
+	text-align: center;
+}
+
+.loading-square-dot-spin {
+	animation: antRotate 1.2s infinite linear;
+	transform: rotate(45deg);
+	position: relative;
+	display: inline-block;
+	font-size: 64px;
+	width: 64px;
+	height: 64px;
+	box-sizing: border-box
+}
+
+.loading-square-dot-spin .loading-dot {
+	width: 22px;
+	height: 22px;
+	position: absolute;
+	display: block;
+	background-color: #1989fa;
+	border-radius: 100%;
+	transform: scale(.75);
+	transform-origin: 50% 50%;
+	opacity: .3;
+	animation: antSpinMove 1s infinite linear alternate
+}
+
+.loading-square-dot-spin .loading-dot:nth-child(1) {
+	top: 0;
+	left: 0
+}
+
+.loading-square-dot-spin .loading-dot:nth-child(2) {
+	top: 0;
+	right: 0;
+	-webkit-animation-delay: .4s;
+	animation-delay: .4s
+}
+
+.loading-square-dot-spin .loading-dot:nth-child(3) {
+	right: 0;
+	bottom: 0;
+	-webkit-animation-delay: .8s;
+	animation-delay: .8s
+}
+
+.loading-square-dot-spin .loading-dot:nth-child(4) {
+	bottom: 0;
+	left: 0;
+	-webkit-animation-delay: 1.2s;
+	animation-delay: 1.2s
+}
+
+.text-tip {
+	margin-top: 25px;
+	font-size: 25px;
+	color: #209cfa;
+}
+
+@keyframes antRotate {
+	to {
+		-webkit-transform: rotate(405deg);
+		transform: rotate(405deg)
+	}
+}
+
+@-webkit-keyframes antRotate {
+	to {
+		-webkit-transform: rotate(405deg);
+		transform: rotate(405deg)
+	}
+}
+
+@keyframes antSpinMove {
+	to {
+		opacity: 1
+	}
+}
+
+@-webkit-keyframes antSpinMove {
+	to {
+		opacity: 1
+	}
+}

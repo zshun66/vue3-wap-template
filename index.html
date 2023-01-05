@@ -5,12 +5,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
 		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
 		<title>Vue3移动端H5模板</title>
-		<link rel="stylesheet" href="/style.css">
+		<link rel="stylesheet" href="./style.css">
+		<link rel="stylesheet" href="./firstScreenAnimation/loading-square-dot.css">
 	</head>
 	<body>
-		<div id="app"></div>
+		<div id="app">
+			<div id="loading-square-dot-mask">
+				<div class="loading-square-dot-wrapper">
+					<span class="loading-square-dot-spin">
+						<i class="loading-dot"></i>
+						<i class="loading-dot"></i>
+						<i class="loading-dot"></i>
+						<i class="loading-dot"></i>
+					</span>
+					<div class="text-tip">资源加载中...</div>
+				</div>
+			</div>
+		</div>
 		<script type="module" src="/src/main.js"></script>
-		
+
 		<script>
 			window.onload = function() {
 				// 禁用双击、双指缩放方案(Android)

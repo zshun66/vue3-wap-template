@@ -1,0 +1,73 @@
+/* html结构 */
+/*
+	<div id="loading-horizontal-dot">
+		<div class="loading-wrap">
+			<div class="loading-dot"></div>
+			<div class="loading-dot"></div>
+			<div class="loading-dot"></div>
+		</div>
+		<div class="text-tip">正在拼命加载...</div>
+	</div>
+*/
+
+#loading-horizontal-dot {
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	z-index: 100;
+	text-align: center;
+}
+
+#loading-horizontal-dot .loading-wrap .loading-dot {
+	background-color: #4999ff;
+	width: 15px;
+	height: 15px;
+	border-radius: 100% !important;
+	margin: 10px;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	display: inline-block;
+	-webkit-animation: ball-beat 0.7s 0s infinite linear;
+	animation: ball-beat 0.7s 0s infinite linear;
+}
+
+#loading-horizontal-dot .loading-wrap .loading-dot:nth-child(2n-1) {
+	-webkit-animation-delay: 0.35s !important;
+	animation-delay: 0.35s !important;
+}
+
+#loading-horizontal-dot .text-tip {
+	margin-top: 10px;
+	font-size: 25px;
+	color: #209cfa;
+}
+
+@-webkit-keyframes ball-beat {
+	50% {
+		opacity: 0.2;
+		-webkit-transform: scale(0.75);
+		transform: scale(0.75);
+	}
+
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+
+@keyframes ball-beat {
+	50% {
+		opacity: 0.2;
+		-webkit-transform: scale(0.75);
+		transform: scale(0.75);
+	}
+
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
