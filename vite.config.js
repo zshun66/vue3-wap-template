@@ -18,7 +18,7 @@ import eruda from 'vite-plugin-eruda'
 export default defineConfig(({ command, mode, ssrBuild }) => {
 	// 获取环境变量
 	const env = loadEnv(mode, resolve(__dirname, 'env'), 'VITE_APP_')
-	
+
 	return {
 		envDir: 'env',
 		envPrefix: 'VITE_APP_',
@@ -135,7 +135,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 				[env.VITE_APP_BASE_API_URL]: {
 					target: env.VITE_APP_BASE_PROXY_URL,
 					changeOrigin: true,
-					rewrite: (path) => path.replace(new RegExp("^\\" + env.VITE_APP_BASE_API_URL), '')
+					rewrite: (path) => path.replace(new RegExp('^\\' + env.VITE_APP_BASE_API_URL), '')
 				}
 			},
 		},
@@ -188,7 +188,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 				[env.VITE_APP_BASE_API_URL]: {
 					target: env.VITE_APP_BASE_PROXY_URL,
 					changeOrigin: true,
-					rewrite: (path) => path.replace(new RegExp("^\\" + env.VITE_APP_BASE_API_URL), '')
+					rewrite: (path) => path.replace(new RegExp('^\\' + env.VITE_APP_BASE_API_URL), '')
 				}
 			}
 		},
