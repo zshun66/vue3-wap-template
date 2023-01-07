@@ -1,5 +1,6 @@
 /**
  * 输入框输入限制扩展指令
+ * 支持 PC端 和 移动端
  * arg: number(数字) | decimal(小数) | custom(自定义)
  * modifiers: positive(只能输入正数) - 默认可输入正负数
  * value: 当arg为decimal时，该值为小数精度。当arg为custom时，该值为正则表达式。
@@ -7,7 +8,7 @@
 export default {
 	mounted(el, binding, vnode, prevVnode) {
 		console.log(binding)
-		el.$handler = (el) => {
+		el.$handler = (el, binding) => {
 			const arg = binding.arg || 'number'
 			const positive = binding.modifiers.positive
 			const value = binding.value
@@ -26,10 +27,10 @@ export default {
 			}
 			trigger(inputEl, 'input')
 		}
-		el.$handler(el)
+		el.$handler(el, binding)
 	},
 	updated(el, binding, vnode, prevVnode) {
-		el.$handler && el.$handler(el)
+		el.$handler && el.$handler(el, binding)
 	}
 }
 

@@ -9,6 +9,16 @@
 
 	const value = ref('44s')
 	const jingdu = ref(5)
+	const parentID = ref('out')
+	const handleClick = function() {
+		if (parentID.value == 'out') {
+			parentID.value = 'inner'
+		} else if (parentID.value == 'inner') {
+			parentID.value = 'out'
+		} else {
+			parentID.value = 'inner'
+		}
+	}
 </script>
 
 <template>
@@ -22,11 +32,16 @@
 			v-clipboard:error="onError"
 		>复制</van-button>
 
-		<div>
-			<van-field v-model="value" label="文本" placeholder="请输入用户名" v-input:decimal.positive="jingdu" />
-			<span>{{ value }}</span>
-			<button @click="value = '888'">cg2</button>
+		<div id="out" style="margin: 20px 10px; height: 400px; border: 10px solid red; padding: 50px 50px; box-sizing: border-box;">
+			<div id="inner" style="width: 100%; height: 100%;border-top: 5px solid blue;border-bottom: 30px solid blue;
+			border-left: 20px solid blue;border-right: 10px solid blue; box-sizing: border-box;">
+				<div style="width: 100px; height: 100px; background-color: aquamarine; border: 10px solid yellow;" v-drag:[parentID]></div>
+			</div>
 		</div>
+		<button @click="handleClick">点击1</button>
+		<button @click="parentID = ''">点击2</button>
+
+		<div style="margin: 20px 10px; height: 400px; border: 1px solid blue;" v-watermark></div>
 	</div>
 </template>
 
