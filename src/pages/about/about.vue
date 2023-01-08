@@ -1,4 +1,5 @@
 <script setup name="about">
+import { reactive } from 'vue';
 	const copyContent = ref('感觉卡时候点击卡哪款拉时间段看了就看了就立刻6669999')
 	const onSuccess = function(e) {
 		console.log('复制成功', e.text)
@@ -18,6 +19,11 @@
 		} else {
 			parentID.value = 'inner'
 		}
+	}
+	
+	let obj = ref('阿三发666999射点发')
+	const changecolor = function() {
+		obj.value = 'sjakdhjadhjbsajdnj'
 	}
 </script>
 
@@ -40,8 +46,10 @@
 		</div>
 		<button @click="handleClick">点击1</button>
 		<button @click="parentID = ''">点击2</button>
-
-		<div style="margin: 20px 10px; height: 400px; border: 1px solid blue;" v-watermark></div>
+		
+		<!-- 水印功能 -->
+		<div style="margin: 20px 10px; height: 400px; border: 1px solid blue;" v-watermark="obj"></div>
+		<button @click="changecolor">切换颜色</button>
 	</div>
 </template>
 

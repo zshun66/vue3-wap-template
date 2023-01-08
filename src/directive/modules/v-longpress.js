@@ -1,8 +1,8 @@
 /**
  * 长按指令
  * 支持 PC端 和 移动端
- * binding.arg		触发长按的时长, 单位(ms)(可选)
- * binding.value	触发长按的回调钩子(必填)
+ * binding.arg(可选)		触发长按的时长, 单位(ms)
+ * binding.value(*必填*)	触发长按的回调钩子
  */
 export default {
 	beforeMount(el, binding, vnode, prevVnode) {
@@ -10,7 +10,7 @@ export default {
 		el.$duration = Number(binding.arg) || 1000
 
 		if (typeof callback !== 'function') {
-			return console.warn('v-longpress指令必须接收一个回调函数')
+			throw new Error('v-longpress：指令必须接收一个回调函数')
 		}
 
 		let timer = null

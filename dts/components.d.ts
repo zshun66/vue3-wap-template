@@ -12,7 +12,6 @@ declare module '@vue/runtime-core' {
     SvgIcon: typeof import('./../src/components/SvgIcon/SvgIcon.vue')['default']
     Tabbar: typeof import('./../src/components/Tabbar/Tabbar.vue')['default']
     VanButton: typeof import('vant/es')['Button']
-    VanField: typeof import('vant/es')['Field']
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
   }
