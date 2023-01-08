@@ -6,34 +6,33 @@
 export default {
 	mounted(el, binding, vnode, prevVnode) {
 		el.$handler = function(el, binding) {
-			el.style.cursor = 'move'
-			el.style.position = 'fixed'
-
+			// 父元素
+			let parentEl = document.getElementById(binding.arg) || document.body
+			let parentWidth = parentEl.offsetWidth // 元素宽度
+			let parentHeight = parentEl.offsetHeight // 元素高度
+			let parentOffsetLeft = parentEl.offsetLeft // 左边距离
+			let parentOffsetTop = parentEl.offsetTop // 顶部距离
+			let parentTopBorder = parseFloat(parentEl.style.borderTopWidth) // 上边框
+			let parentRightBorder = parseFloat(parentEl.style.borderRightWidth) // 右边框
+			let parentBottomBorder = parseFloat(parentEl.style.borderBottomWidth) // 下边框
+			let parentLeftBorder = parseFloat(parentEl.style.borderLeftWidth) // 左边框
+			
+			// 目标元素
 			let targetWidth = el.offsetWidth
 			let targetHeight = el.offsetHeight
 			let targetLeft = el.offsetLeft
 			let targetTop = el.offsetTop
-
-			// 父元素
-			let parentEl = document.getElementById(binding.arg)
-			let parentWidth = 0 // 元素宽度
-			let parentHeight = 0 // 元素高度
-			let parentOffsetLeft = 0 // 左边距离
-			let parentOffsetTop = 0 // 顶部距离
-			let parentTopBorder = 0 // 上边框
-			let parentRightBorder = 0 // 右边框
-			let parentBottomBorder = 0 // 下边框
-			let parentLeftBorder = 0 // 左边框
-			if (parentEl) {
-				parentWidth = parentEl.offsetWidth
-				parentHeight = parentEl.offsetHeight
-				parentOffsetLeft = parentEl.offsetLeft
-				parentOffsetTop = parentEl.offsetTop
-				parentTopBorder = parseFloat(parentEl.style.borderTopWidth)
-				parentRightBorder = parseFloat(parentEl.style.borderRightWidth)
-				parentBottomBorder = parseFloat(parentEl.style.borderBottomWidth)
-				parentLeftBorder = parseFloat(parentEl.style.borderLeftWidth)
+			
+			parentEl.style.position = 'relative'
+			el.style.position = 'absolute'
+			if (el.parentElement != parentEl) {
+				parentEl.appendChild(el)
+				el.style.left = targetLeft - parentOffsetLeft - parentTopBorder + 'px'
+				el.style.top = targetTop - parentOffsetTop - parentLeftBorder + 'px'
 			}
+			el.style.cursor = 'move'
+
+			
 
 			let mouseX = 0
 			let mouseY = 0
