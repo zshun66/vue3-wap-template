@@ -64,7 +64,7 @@ export default {
 		
 		watch(() => binding.value, (newv, oldv) => {
 			el.$handler(el, binding)
-		}, { immediate: true ,deep: true })
+		}, { immediate: true, deep: true })
 	},
 	updated(el, binding, vnode, prevVnode) {
 		el.$handler(el, binding)

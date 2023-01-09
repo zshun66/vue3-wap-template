@@ -2,7 +2,7 @@
  * 输入框输入限制扩展指令
  * 支持 PC端 和 移动端
  * binding.arg(可选): number(数字) | decimal(小数) | custom(自定义)
- * binding.modifiers(可选): positive(只能输入正数) - 默认可输入正负数
+ * binding.modifiers.positive(可选): positive(只能输入正数) - 默认可输入正负数
  * binding.value(可选): 当arg为decimal时，该值为小数精度。当arg为custom时，该值为正则表达式。
  */
 export default {
