@@ -186,14 +186,22 @@ function getScrollbarRect(el) {
 	let scrollbarWidth = 0
 	let scrollbarHeight = 0
 	
+	const parentEls = []
+	
 	const loop = (el) => {
 		const parentEl = el.parentElement
-		console.log(parentEl.scrollTop)
-		if (parentEl.scrollTop > 0) {
-			
-		} else {
+		const style = document.defaultView.getComputedStyle(parentEl)
+		parentEls.push({
+			element: parentEl,
+			overflowX: style.overflowX,
+			overflowY: style.overflowY
+		})
+		// parentEl.style.overflowX = 'hidden'
+		// parentEl.style.overflowY = 'hidden'
+		if (parentEl !== document.body) {
 			loop(parentEl)
 		}
 	}
 	loop(el)
+	console.log(parentEls)
 }
