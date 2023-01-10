@@ -10,7 +10,7 @@ import { reactive } from 'vue';
 
 	const value = ref('44s')
 	const jingdu = ref(5)
-	const parentID = ref('out')
+	const parentID = ref('inner')
 	const handleClick = function() {
 		if (parentID.value == 'out') {
 			parentID.value = 'inner'
@@ -21,14 +21,17 @@ import { reactive } from 'vue';
 		}
 	}
 
-	let obj = ref('阿三发射点发')
+	let obj = reactive({
+		text: '阿三发射点发',
+		bgColor: '#fff'
+	})
 	const changecolor = function() {
-		obj.value = 'sjakdhjadhjbsajdnj'
+		obj.text = 'sjakdhjadhjbsajdnj'
 	}
 </script>
 
 <template>
-	<div class="about-page-container">
+	<div id="about-page-container" class="about-page-container">
 		<p class="zoomIn" style="text-align: center;">关于</p>
 
 		<van-button
@@ -41,7 +44,8 @@ import { reactive } from 'vue';
 		<div id="out" style="margin: 20px 10px; height: 400px; border: 10px solid red; padding: 50px 50px; box-sizing: border-box;">
 			<div id="inner" style="width: 100%; height: 100%;border-top: 5px solid blue;border-bottom: 30px solid blue;
 			border-left: 20px solid blue;border-right: 10px solid blue; box-sizing: border-box;">
-				<div style="width: 100px; height: 100px; background-color: aquamarine; border: 10px solid yellow; margin: 20px 20px;" v-drag:[parentID]></div>
+				<div style="width: 100px; height: 100px; background-color: aquamarine; border: 10px solid yellow; margin: 20px 20px;
+				box-sizing: border-box;" v-drag:[parentID].nocross></div>
 			</div>
 		</div>
 		<button @click="handleClick">点击1</button>
