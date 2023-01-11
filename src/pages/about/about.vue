@@ -21,20 +21,12 @@ import { reactive } from 'vue';
 
 	const throttleObj = reactive({
 		event: 'click',
-		callback: (e) => {
-			console.log(666888)
+		callback (e) {
+			console.log(e, 666888, this)
 		},
 		delay: 500,
 		leading: true,
 		training: true
-	})
-
-	const debounceObj = reactive({
-		event: 'click',
-		callback: (e) => {
-			console.log(e, 9999999)
-		},
-		delay: 1000,
 	})
 </script>
 
@@ -59,7 +51,7 @@ import { reactive } from 'vue';
 		<button @click="handleClick">点击1</button>
 		<button @click="parentID = ''">点击2</button> -->
 
-		<!-- <button v-throttle="throttleObj">按钮</button> -->
+		<button v-throttle="throttleObj">按钮</button>
 	</div>
 </template>
 

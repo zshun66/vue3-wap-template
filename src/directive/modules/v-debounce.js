@@ -43,16 +43,18 @@ export default {
 				}
 			}
 			
-			el.addEventListener(el.$event, el.$eventHanlde())
+			el.$eventCallback = el.$eventHanlde()
+			
+			el.addEventListener(el.$event, el.$eventCallback)
 		}
 
 		el.$handler(el, binding)
 	},
 	updated(el, binding, vnode, prevVnode) {
-		el.removeEventListener(el.$event, el.$handler)
+		el.removeEventListener(el.$event, el.$eventCallback)
 		el.$handler(el, binding)
 	},
 	unmounted(el, binding, vnode, prevVnode) {
-		el.removeEventListener(el.$event, el.$handler)
+		el.removeEventListener(el.$event, el.$eventCallback)
 	}
 }

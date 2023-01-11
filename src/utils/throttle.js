@@ -27,7 +27,7 @@ function throttle(func, delay, options) {
 			}
 			func.apply(context, args)
 			oldTime = now
-		} else if (!timeout && options.trailing !== false) {
+		} else if (!timeout && options.training !== false) {
 			timeout = setTimeout(later, delay)
 		}
 	}
