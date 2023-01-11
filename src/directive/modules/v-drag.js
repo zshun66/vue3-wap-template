@@ -24,14 +24,13 @@ export default {
 			let parentBottomBorder = parseFloat(parentEl.style.borderBottomWidth || 0) // 下边框
 			let parentLeftBorder = parseFloat(parentEl.style.borderLeftWidth || 0) // 左边框
 
-			getScrollbarRect(el)
-
 			// 目标元素
 			el.style.position = 'absolute'
 			let targetWidth = el.offsetWidth
 			let targetHeight = el.offsetHeight
 			let targetOffsetLeft = el.offsetLeft
 			let targetOffsetTop = el.offsetTop
+			console.log(el.style.left)
 
 			parentEl.appendChild(el)
 			el.style.margin = '0px'
@@ -138,23 +137,25 @@ export default {
 				el.addEventListener('mouseup', el.$dragend)
 				el.addEventListener('mouseout', el.$mouseout)
 			}
-			
+
 			el.$removeEvents = () => {
 				el.removeEventListener('mousemove', el.$draggableCheck)
 				el.removeEventListener('mousedown', el.$dragstart)
 				el.removeEventListener('mouseup', el.$dragend)
 				el.removeEventListener('mouseout', el.$mouseout)
-				
+
 				el.removeEventListener('touchstart', el.$dragstart)
 			}
 		}
 
-		el.$handler(el, binding)
+		setTimeout(() => {
+			el.$handler(el, binding)
+		}, 350)
 	},
 	updated(el, binding, vnode, prevVnode) {
 		console.log('updated')
-		// el.$removeEvents()
-		// el.$handler(el, binding)
+		el.$removeEvents()
+		el.$handler(el, binding)
 		// el.$triggerEvents()
 	},
 	unmounted(el, binding, vnode, prevVnode) {
@@ -180,28 +181,4 @@ function trigger(el, type) {
 	const e = document.createEvent('HTMLEvents')
 	e.initEvent(type, true, true)
 	el.dispatchEvent(e)
-}
-
-function getScrollbarRect(el) {
-	let scrollbarWidth = 0
-	let scrollbarHeight = 0
-	
-	const parentEls = []
-	
-	const loop = (el) => {
-		const parentEl = el.parentElement
-		const style = document.defaultView.getComputedStyle(parentEl)
-		parentEls.push({
-			element: parentEl,
-			overflowX: style.overflowX,
-			overflowY: style.overflowY
-		})
-		// parentEl.style.overflowX = 'hidden'
-		// parentEl.style.overflowY = 'hidden'
-		if (parentEl !== document.body) {
-			loop(parentEl)
-		}
-	}
-	loop(el)
-	console.log(parentEls)
 }

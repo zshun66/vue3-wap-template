@@ -5,7 +5,7 @@
  * @param {*} options 一个对象，leading =true时代表第一次立即执行，training = true 表示最后一次也会被执行
  */
 function throttle(func, delay, options) {
-	let context, args, timeout;
+	let context, args, timeout
 	let oldTime = 0
 	if (!options) options = {}
 	let later = function() {

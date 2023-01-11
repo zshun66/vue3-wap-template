@@ -8,26 +8,34 @@ import { reactive } from 'vue';
 		console.log('复制失败', e)
 	}
 
-	const value = ref('44s')
-	const jingdu = ref(5)
-	const parentID = ref('inner')
-	const handleClick = function() {
-		if (parentID.value == 'out') {
-			parentID.value = 'inner'
-		} else if (parentID.value == 'inner') {
-			parentID.value = 'out'
-		} else {
-			parentID.value = 'inner'
-		}
-	}
+	// const parentID = ref('')
+	// const handleClick = function() {
+	// 	if (parentID.value == 'out') {
+	// 		parentID.value = 'inner'
+	// 	} else if (parentID.value == 'inner') {
+	// 		parentID.value = 'out'
+	// 	} else {
+	// 		parentID.value = 'inner'
+	// 	}
+	// }
 
-	let obj = reactive({
-		text: '阿三发射点发',
-		bgColor: '#fff'
+	const throttleObj = reactive({
+		event: 'click',
+		callback: (e) => {
+			console.log(666888)
+		},
+		delay: 500,
+		leading: true,
+		training: true
 	})
-	const changecolor = function() {
-		obj.text = 'sjakdhjadhjbsajdnj'
-	}
+
+	const debounceObj = reactive({
+		event: 'click',
+		callback: (e) => {
+			console.log(e, 9999999)
+		},
+		delay: 1000,
+	})
 </script>
 
 <template>
@@ -41,7 +49,7 @@ import { reactive } from 'vue';
 			v-clipboard:error="onError"
 		>复制</van-button>
 
-		<div id="out" style="margin: 20px 10px; height: 400px; border: 10px solid red; padding: 50px 50px; box-sizing: border-box;">
+		<!-- <div id="out" style="margin: 20px 10px; height: 400px; border: 10px solid red; padding: 50px 50px; box-sizing: border-box;">
 			<div id="inner" style="width: 100%; height: 100%;border-top: 5px solid blue;border-bottom: 30px solid blue;
 			border-left: 20px solid blue;border-right: 10px solid blue; box-sizing: border-box;">
 				<div style="width: 100px; height: 100px; background-color: aquamarine; border: 10px solid yellow; margin: 20px 20px;
@@ -49,11 +57,9 @@ import { reactive } from 'vue';
 			</div>
 		</div>
 		<button @click="handleClick">点击1</button>
-		<button @click="parentID = ''">点击2</button>
+		<button @click="parentID = ''">点击2</button> -->
 
-		<!-- 水印功能 -->
-		<div style="margin: 20px 10px; height: 400px; border: 1px solid blue;" v-watermark="obj"></div>
-		<button @click="changecolor">切换颜色</button>
+		<!-- <button v-throttle="throttleObj">按钮</button> -->
 	</div>
 </template>
 

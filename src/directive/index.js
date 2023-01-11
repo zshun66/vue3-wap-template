@@ -5,6 +5,8 @@ import input from './modules/v-input.js'
 import drag from './modules/v-drag.js'
 import longpress from './modules/v-longpress.js'
 import watermark from './modules/v-watermark.js'
+import throttle from './modules/v-throttle.js'
+import debounce from './modules/v-debounce.js'
 
 export default {
 	install(app) {
@@ -15,5 +17,7 @@ export default {
 		app.directive('drag', drag)
 		app.directive('longpress', longpress)
 		app.directive('watermark', watermark)
+		app.directive('throttle', throttle)
+		app.directive('debounce', debounce)
 	}
 }
