@@ -108,11 +108,11 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 						minPixelValue: 1, // 默认值1，小于或等于1px则不进行转换
 						mediaQuery: false, // 否在媒体查询的css代码中也进行转换，默认false
 						replace: false, // 是否转换后直接更换属性值
-						exclude: [/node_modules/], // 设置忽略文件，用正则做目录名匹配
+						// exclude: [/node_modules/], // 设置忽略文件，用正则做目录名匹配
 						include: undefined,
 						landscape: false, // 是否处理横屏设备
-						landscapeUnit: 'vw',
-						landscapeWidth: 568,
+						landscapeUnit: 'px',
+						landscapeWidth: 1920,
 						// 这个自定义的方法是针对处理vant组件下的设计稿为375问题
 						customFun: ({ file }) => {
 							const designWidth = path.join(file).includes(path.join('node_modules', 'vant')) ? 375 : 750
