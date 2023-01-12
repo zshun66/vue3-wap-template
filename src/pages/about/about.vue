@@ -8,26 +8,7 @@ import { reactive } from 'vue';
 		console.log('复制失败', e)
 	}
 
-	// const parentID = ref('')
-	// const handleClick = function() {
-	// 	if (parentID.value == 'out') {
-	// 		parentID.value = 'inner'
-	// 	} else if (parentID.value == 'inner') {
-	// 		parentID.value = 'out'
-	// 	} else {
-	// 		parentID.value = 'inner'
-	// 	}
-	// }
 
-	const throttleObj = reactive({
-		event: 'click',
-		callback (e) {
-			console.log(e, 666888, this)
-		},
-		delay: 500,
-		leading: true,
-		training: true
-	})
 </script>
 
 <template>
@@ -41,17 +22,11 @@ import { reactive } from 'vue';
 			v-clipboard:error="onError"
 		>复制</van-button>
 
-		<!-- <div id="out" style="margin: 20px 10px; height: 400px; border: 10px solid red; padding: 50px 50px; box-sizing: border-box;">
-			<div id="inner" style="width: 100%; height: 100%;border-top: 5px solid blue;border-bottom: 30px solid blue;
-			border-left: 20px solid blue;border-right: 10px solid blue; box-sizing: border-box;">
-				<div style="width: 100px; height: 100px; background-color: aquamarine; border: 10px solid yellow; margin: 20px 20px;
-				box-sizing: border-box;" v-drag:[parentID].nocross></div>
-			</div>
-		</div>
-		<button @click="handleClick">点击1</button>
-		<button @click="parentID = ''">点击2</button> -->
+		<p v-for="index in 100">{{ index }}</p>
 
-		<button v-throttle="throttleObj">按钮</button>
+		<div id="out" style="border: 1px solid red; box-sizing: border-box;">
+			<img src="" alt="" style="width: 100%; height: auto; display: flex;" v-lazy="'https://upload.pig66.com/uploadfile/2017/0511/20170511075802322.jpg'">
+		</div>
 	</div>
 </template>
 

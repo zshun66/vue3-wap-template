@@ -12,52 +12,100 @@ export default {
 			let nocross = binding.modifiers.nocross
 			let threshold = binding.value || 50
 
-			// 父元素
-			let parentEl = document.getElementById(parentId) || document.body
-			parentEl.style.position = 'relative'
-			let parentWidth = parentEl.offsetWidth // 元素宽度
-			let parentHeight = parentEl.offsetHeight // 元素高度
-			let parentOffsetLeft = parentEl.offsetLeft // 左边距离
-			let parentOffsetTop = parentEl.offsetTop // 顶部距离
-			let parentTopBorder = parseFloat(parentEl.style.borderTopWidth || 0) // 上边框
-			let parentRightBorder = parseFloat(parentEl.style.borderRightWidth || 0) // 右边框
-			let parentBottomBorder = parseFloat(parentEl.style.borderBottomWidth || 0) // 下边框
-			let parentLeftBorder = parseFloat(parentEl.style.borderLeftWidth || 0) // 左边框
+			let parentEl = null
+			let parentWidth = 0
+			let parentHeight = 0
+			let parentTopBorder = 0
+			let parentRightBorder = 0
+			let parentBottomBorder = 0
+			let parentLeftBorder = 0
 
-			// 目标元素
-			el.style.position = 'absolute'
-			let targetWidth = el.offsetWidth
-			let targetHeight = el.offsetHeight
-			let targetOffsetLeft = el.offsetLeft
-			let targetOffsetTop = el.offsetTop
-			console.log(el.style.left)
+			let targetWidth = 0
+			let targetHeight = 0
+			let targetOffsetLeft = 0
+			let targetOffsetTop = 0
 
-			parentEl.appendChild(el)
-			el.style.margin = '0px'
-			el.style.left = targetOffsetLeft + 'px'
-			el.style.top = targetOffsetTop + 'px'
-
-
+			let isInit = false
 			let draggable = false
 			let mouseX = 0
 			let mouseY = 0
 
+			el.$initInfo = () => {
+				// 父元素
+				parentEl = document.getElementById(parentId) || document.body
+				parentEl.style.position = 'relative'
+				parentWidth = parentEl.offsetWidth // 元素宽度
+				parentHeight = parentEl.offsetHeight // 元素高度
+				parentTopBorder = parseFloat(parentEl.style.borderTopWidth || 0) // 上边框
+				parentRightBorder = parseFloat(parentEl.style.borderRightWidth || 0) // 右边框
+				parentBottomBorder = parseFloat(parentEl.style.borderBottomWidth || 0) // 下边框
+				parentLeftBorder = parseFloat(parentEl.style.borderLeftWidth || 0) // 左边框
+
+				// 目标元素
+				el.style.position = 'absolute'
+				targetWidth = el.offsetWidth
+				targetHeight = el.offsetHeight
+				targetOffsetLeft = el.offsetLeft
+				targetOffsetTop = el.offsetTop
+
+				parentEl.appendChild(el)
+				el.style.margin = '0px'
+				el.style.left = targetOffsetLeft + 'px'
+				el.style.top = targetOffsetTop + 'px'
+			}
+
 			// 移动端
 			if (isMobile()) {
+				el.$initInfo()
+
 				el.$dragstart = (e) => {
-					console.log(e.type, e)
+					// console.log(e.type, e)
 					e.preventDefault()
-					if (e.layerY <= threshold) {
-						draggable = true
-						mouseX = e.touches[0].clientX
-						mouseY = e.touches[0].clientY
-					} else {
-						draggable = false
+					mouseX = e.touches[0].clientX
+					mouseY = e.touches[0].clientY
+				}
+				
+				el.$dragmove = (e) => {
+					// console.log(e.type, e)
+					e.preventDefault()
+					let disX = e.touches[0].clientX - mouseX
+					let disY = e.touches[0].clientY - mouseY
+					let finalLeft = targetOffsetLeft + disX
+					let finalTop = targetOffsetTop + disY
+				
+					if (nocross) {
+						let minLeft = 0
+						if (finalLeft < minLeft) {
+							finalLeft = minLeft
+						}
+						let maxLeft = parentWidth - targetWidth - parentLeftBorder - parentRightBorder
+						if (finalLeft > maxLeft) {
+							finalLeft = maxLeft
+						}
+						let minTop = 0
+						if (finalTop < minTop) {
+							finalTop = minTop
+						}
+						let maxTop = parentHeight - targetHeight - parentTopBorder - parentBottomBorder
+						if (finalTop > maxTop) {
+							finalTop = maxTop
+						}
 					}
-					console.log(draggable)
+					
+					el.$dragend = (e) => {
+						// console.log(e.type, e)
+						targetOffsetLeft = el.offsetLeft
+						targetOffsetTop = el.offsetTop
+					}
+				
+					el.style.left = finalLeft + 'px'
+					el.style.top = finalTop + 'px'
+					return false // 防止选中文本，文本拖动的问题
 				}
 
 				el.addEventListener('touchstart', el.$dragstart)
+				el.addEventListener('touchmove', el.$dragmove)
+				el.addEventListener('touchend', el.$dragend)
 			}
 			// PC端
 			else {
@@ -65,6 +113,12 @@ export default {
 				el.$draggableCheck = (e) => {
 					// console.log(e.type, e)
 					e.preventDefault()
+
+					if (!isInit) {
+						el.$initInfo()
+						isInit = true
+					}
+
 					if (e.layerY <= threshold) {
 						el.style.cursor = 'move'
 						draggable = true
@@ -148,15 +202,7 @@ export default {
 			}
 		}
 
-		setTimeout(() => {
-			el.$handler(el, binding)
-		}, 350)
-	},
-	updated(el, binding, vnode, prevVnode) {
-		console.log('updated')
-		el.$removeEvents()
 		el.$handler(el, binding)
-		// el.$triggerEvents()
 	},
 	unmounted(el, binding, vnode, prevVnode) {
 		el.$removeEvents()

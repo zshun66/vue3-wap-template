@@ -4,7 +4,7 @@
  * 	{
  *		event: 'input',	// 事件名称(必填)
  *		callback: (e) => { }, // 事件回调(必填)
- *		delay: 500, // 节流间隔时间
+ *		delay: 300, // 防抖间隔时间
  *		immediate: false, // 是否立即执行
  *	}
  */
@@ -31,20 +31,20 @@ export default {
 				return function(e) {
 					clearTimeout(timer)
 					if (immediate) {
-						if (!timer) callback(...arguments)
+						if (!timer) callback.apply(this, arguments)
 						timer = setTimeout(() => {
 							timer = null
 						}, delay)
 					} else {
 						timer = setTimeout(() => {
-							callback(...arguments)
+							callback.apply(this, arguments)
 						}, delay)
 					}
 				}
 			}
-			
+
 			el.$eventCallback = el.$eventHanlde()
-			
+
 			el.addEventListener(el.$event, el.$eventCallback)
 		}
 

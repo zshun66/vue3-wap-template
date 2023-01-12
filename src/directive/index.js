@@ -1,5 +1,5 @@
 import focus from './modules/v-focus.js'
-import lazy from './modules/v-focus.js'
+import lazy from './modules/v-lazy.js'
 import emoji from './modules/v-emoji.js'
 import input from './modules/v-input.js'
 import drag from './modules/v-drag.js'
