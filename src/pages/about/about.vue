@@ -1,5 +1,4 @@
 <script setup name="about">
-import { reactive } from 'vue';
 	const copyContent = ref('感觉卡时候点击卡哪款拉时间段看了就看了就立刻6669999')
 	const onSuccess = function(e) {
 		console.log('复制成功', e.text)
@@ -7,8 +6,6 @@ import { reactive } from 'vue';
 	const onError = function(e) {
 		console.log('复制失败', e)
 	}
-
-
 </script>
 
 <template>
